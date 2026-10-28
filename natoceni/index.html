@@ -1,0 +1,201 @@
+<!doctype html>
+<html lang="cs">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Turnov · natáčení A</title>
+<style>
+@font-face{font-family:Switzer;src:url(font/Switzer-Variable.ttf) format("truetype");font-weight:100 900}
+:root{--ink:#16130f;--paper:#f6f1e8;--card:#fffdf8;--line:#e2d9c8;--mute:#6f675b;--wine:#7a1f2b;--gold:#b08a4a;--ok:#2f7a4f;--okbg:#e6f1e9}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--paper);color:var(--ink);font:400 16px/1.45 Switzer,-apple-system,"Helvetica Neue",Arial,sans-serif}
+.wrap{max-width:900px;margin:0 auto;padding:0 16px 70px}
+.tabs{position:sticky;top:0;z-index:10;display:flex;gap:6px;overflow-x:auto;background:rgba(246,241,232,.97);margin:0 -16px;padding:10px 16px;border-bottom:1px solid var(--line);scrollbar-width:none}
+.tabs::-webkit-scrollbar{display:none}
+.tabs button{flex:none;font:inherit;font-size:15px;font-weight:600;border:1.5px solid var(--ink);background:#fff;color:var(--ink);border-radius:99px;padding:8px 14px;cursor:pointer}
+.tabs button.on{background:var(--ink);color:#fff}
+.tabs .pdf{margin-left:auto;text-decoration:none;color:var(--mute);font-size:14px;align-self:center;white-space:nowrap}
+.pnl{display:none;padding-top:14px}
+.pnl.on{display:block}
+.eyebrow{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--wine);font-weight:600}
+h2{font-weight:700;font-size:27px;line-height:1.15;margin:4px 0 2px;display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.poc{color:var(--mute);margin:0 0 8px;font-size:14.5px}
+.oco{font-size:16.5px;margin:0 0 8px}
+.meta{display:flex;flex-wrap:wrap;gap:6px;margin:0 0 12px}
+.meta span{border:1px solid var(--line);background:var(--card);border-radius:99px;padding:3px 10px;font-size:13px}
+.vb{display:inline-block;font-size:12px;font-weight:700;border-radius:5px;padding:2px 7px;color:#fff;vertical-align:1px}
+h2 .vb{font-size:16px;padding:3px 9px}
+.vb.s2{background:#9a6b1f}.vb.f1{background:#c0561b}.vb.f2{background:#111;color:#8fe39a}
+.kap{display:grid;grid-template-columns:200px 1fr;gap:12px;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:10px;margin:8px 0}
+.kap img,.kap .noimg{width:100%;aspect-ratio:16/9;object-fit:cover;border-radius:8px;display:block;background:#e9e1d3}
+.kap h3{margin:0 0 3px;font-size:17px;display:flex;align-items:center;gap:8px}
+.kn{display:inline-flex;align-items:center;justify-content:center;width:26px;height:26px;border-radius:50%;background:var(--ink);color:#fff;font-size:13.5px;flex:none}
+.kap p{margin:0 0 5px;font-size:15px}
+.say{border-left:4px solid var(--wine);background:#fbf0f1;border-radius:0 8px 8px 0;padding:5px 10px;margin:5px 0;font-size:15.5px;font-weight:500}
+.say .who{display:block;font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--wine);font-weight:800}
+.vanda{color:#4a4038;font-style:italic}
+.nat{color:#3a332a}.nat b{color:var(--ink)}
+.ref{color:var(--wine);font-weight:600;white-space:nowrap}
+h4{font-size:14px;letter-spacing:.12em;text-transform:uppercase;color:var(--mute);margin:16px 0 6px}
+.harm{width:100%;border-collapse:collapse;background:var(--card);border:1px solid var(--line);font-size:14.5px}
+.harm th,.harm td{text-align:left;padding:6px 8px;border-bottom:1px solid var(--line);vertical-align:top}
+.harm th{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--mute)}
+.harm .t{font-weight:700;white-space:nowrap}.harm .rr{white-space:nowrap;color:var(--mute)}
+.harm .vb{margin-right:3px}
+.tag{display:inline-block;font-size:11px;font-weight:700;border-radius:5px;padding:1px 6px;color:#fff;background:#8a8275;margin-left:4px;vertical-align:1px}
+.tag.d{background:#d9a441;color:#1d1606}.tag.n{background:#3b4a6b}.tag.u{background:var(--wine)}
+.rules{font-size:14px;color:#3a332a;margin:8px 0 0}
+.prog{font-weight:700;margin-left:auto;font-size:14px;white-space:nowrap}
+.blk{display:flex;align-items:center;gap:8px;background:var(--ink);color:#fff;border-radius:10px;padding:7px 12px;margin:14px 0 4px}
+.bt{font-weight:800}.bk{font-weight:600}
+.sl{display:grid;grid-template-columns:1fr auto;gap:2px 10px;background:var(--card);border:1px solid var(--line);border-radius:10px;padding:8px 10px;margin:4px 0}
+.sl label{display:flex;gap:10px;align-items:flex-start;cursor:pointer}
+.sl input{flex:none;appearance:none;-webkit-appearance:none;width:28px;height:28px;margin:0;border:2.5px solid var(--ink);border-radius:7px;background:#fff;display:grid;place-content:center;cursor:pointer}
+.sl input:checked{background:var(--ok);border-color:var(--ok)}
+.sl input:checked:after{content:"";width:8px;height:14px;border:solid #fff;border-width:0 3px 3px 0;transform:translateY(-2px) rotate(45deg)}
+.sl .n{font-weight:700;color:var(--wine);min-width:22px;padding-top:3px}
+.sl .tx{font-size:15.5px;padding-top:2px}
+.sl .rf{display:flex;gap:4px;align-items:flex-start;flex-wrap:wrap;justify-content:flex-end;padding-top:3px}
+.sl .rf i{font-style:normal;font-size:11px;font-weight:700;color:var(--mute);margin:2px 4px 0 1px}
+.sl .say,.sl .alt{grid-column:1/-1;margin-left:70px}
+.alt{font-size:13.5px;color:#5a4547}
+.alt summary{cursor:pointer;color:var(--wine);font-weight:600}
+.alt p{margin:3px 0}
+.p{display:inline-block;font-size:11px;font-weight:700;border-radius:5px;padding:2px 6px;color:#fff}
+.p.h{background:var(--wine)}.p.k{background:#2f6b4f}.p.x{background:#8a8275}.p.f{background:#4d6a86}
+.sl.done{background:var(--okbg)}
+.sl.done .tx{text-decoration:line-through;color:#5b6b60}
+.sl.done .say,.sl.done .alt{opacity:.5}
+.foot{margin-top:24px;font-size:12px;color:var(--mute)}
+@media (max-width:640px){
+  .kap{grid-template-columns:1fr}
+  h2{font-size:23px}
+  .sl{grid-template-columns:1fr}
+  .sl .rf{justify-content:flex-start;margin-left:70px}
+  .sl .say,.sl .alt{margin-left:0}
+}
+@media print{
+  @page{size:A4;margin:9mm 10mm}
+  body{background:#fff;font-size:9pt}
+  .wrap{max-width:none;padding:0}
+  .tabs,.alt,.noprint{display:none!important}
+  .pnl{display:block!important;padding-top:0;break-before:page}
+  .pnl:first-of-type{break-before:auto}
+  h2{font-size:17pt;margin:2px 0 0}.poc{font-size:8.5pt;margin-bottom:3px}.oco{font-size:9.5pt;margin-bottom:4px}
+  .meta{margin-bottom:5px}.meta span{font-size:8pt;padding:1px 7px}
+  .kap{grid-template-columns:44mm 1fr;gap:8px;padding:5px 7px;margin:4px 0;break-inside:avoid}
+  .kap h3{font-size:10.5pt;margin-bottom:1px}.kn{width:18px;height:18px;font-size:8.5pt}
+  .kap p{font-size:8.8pt;margin-bottom:2px}
+  .say{font-size:9pt;padding:2px 7px;margin:2px 0}.say .who{font-size:6.5pt}
+  .harm{font-size:8.5pt}.harm th,.harm td{padding:2px 6px}
+  h4{margin:6px 0 3px;font-size:8pt}
+  .rules{font-size:8.5pt;margin-top:3px}
+  .blk{padding:2px 8px;margin:5px 0 2px;border-radius:5px;break-after:avoid}
+  .sl{padding:2px 7px;margin:2px 0;border-radius:5px;break-inside:avoid}
+  .sl input{width:12px;height:12px;border-width:1.5px;border-radius:2px}
+  .sl .n{padding-top:0;min-width:16px}.sl .tx{font-size:8.6pt;padding-top:0}
+  .sl .say{margin-left:44px;font-size:8.4pt;padding:1px 6px}
+  .sl .rf{padding-top:0}
+  .slw{columns:2;column-gap:5mm}
+  .blk{break-inside:avoid;font-size:8.5pt}
+  .sl{display:block;padding:2px 5px}.sl label{display:inline-flex;gap:5px}
+  .sl .rf{display:inline-flex;margin-left:4px;vertical-align:1px}.sl .rf .vb,.sl .rf .p{font-size:6.5pt;padding:0 4px}
+  .sl .say{margin:1px 0 0 28px;font-size:8pt}
+  .sl .tx{font-size:8.3pt}
+  .vb,.p,.tag,.blk,.kn,.say,.harm th{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+}
+.p.s{background:#7a5a1f}.tc{font-size:13px;font-weight:600;color:var(--mute);margin-left:4px}</style>
+</head>
+<body>
+<div class="wrap">
+<nav class="tabs"><button type="button" data-t="F">Film A · 75 s</button><button type="button" data-t="SL">Harmonogram a shotlist</button><a class="pdf" href="Turnov_natoceni_A.pdf">PDF</a></nav>
+<section class="pnl" data-tab="F"><div class="eyebrow">Turnov · Palackého 440 · varianta A · natáčení 9:00–12:00</div>
+<h2>Film cca 75 s, bez komentáře</h2>
+<p class="oco">Pořadí ve filmu. Natáčí se jinak, podle světla (záložka Harmonogram a shotlist). U každé kapitoly odkaz na řádky shotlistu.</p>
+<div class="meta"><span>4K, 25 fps</span><span>hudba, řezy na údery</span><span>čisté bílé titulky</span><span>6 vizualizací (VIZ 1–6)</span></div>
+<div class="kap"><div class="noimg"></div><div><h3><span class="kn">1</span>Jizera a most <span class="tc">0:00–0:08</span></h3><p>Dron nízko nad řekou letí k ocelovému obloukovému mostu, za ním vyroste dům v ranním slunci.</p><div class="say"><span class="who">Titulek</span>PALACKÉHO 440 · TURNOV</div><p class="nat"><b>Natočit:</b> <span class="ref" data-r="4">→ řádky 4, 5, 9</span></p></div></div>
+<div class="kap"><div class="noimg"></div><div><h3><span class="kn">2</span>Turnov shora <span class="tc">0:08–0:14</span></h3><p>Dron stoupá přes most nad náměstí, nad městem zámek Hrubý Rohozec. Všechno je kousek pěšky.</p><div class="say"><span class="who">Titulek</span>NÁMĚSTÍ 600 M · NÁDRAŽÍ 700 M</div><p class="nat"><b>Natočit:</b> <span class="ref" data-r="6">→ řádky 6, 7, 40</span></p></div></div>
+<div class="kap"><div class="noimg"></div><div><h3><span class="kn">3</span>Vstup a schodiště <span class="tc">0:14–0:18</span></h3><p>Nové vstupní dveře a schodiště nahoru, krátce.</p><p class="nat"><b>Natočit:</b> <span class="ref" data-r="32">→ řádky 32, 33</span></p></div></div>
+<div class="kap"><img src="img/podkrovi.jpg" alt=""><div><h3><span class="kn">4</span>Byty od přízemí po podkroví <span class="tc">0:18–0:52</span></h3><p>Osm bytů po čtyřech vteřinách: 01 · 04 · 05 · 08 · 09 · 10 · 11 · 12. Z bytu do bytu švihem kamery v rytmu hudby. Šest prázdných pokojů se v jednom záběru zařídí (vychytávka 1 a 2). V mezonetu po schodišti až na terasu. Na konci 2 s dům shora s titulkem BYTY OD 8 MIL. KČ (jedna cena pro celý dům, kvůli slevám).</p><div class="say"><span class="who">Titulek</span>BYT 01 · 3+KK · 89 M² … (u každého bytu), na konci BYTY OD 8 MIL. KČ</div><p class="nat"><b>Natočit:</b> <span class="ref" data-r="12">→ řádky 12, 13, 14, 15, 18, 19, 20, 24, 25, 26, 27, 30</span></p></div></div>
+<div class="kap"><div class="noimg"></div><div><h3><span class="kn">5</span>Dvůr a parkování <span class="tc">0:52–0:58</span></h3><p>Brána na dálkové ovládání se otevře, dron kolmo shora nad parkovacími stáními.</p><div class="say"><span class="who">Titulek</span>KE KAŽDÉMU BYTU VYHRAZENÉ PARKOVACÍ STÁNÍ</div><p class="nat"><b>Natočit:</b> <span class="ref" data-r="2">→ řádky 2, 8, 34</span></p></div></div>
+<div class="kap"><img src="img/schody.jpg" alt=""><div><h3><span class="kn">6</span>Standardy zblízka <span class="tc">0:58–1:02</span></h3><p>Dubová podlaha, dveře Sapeli, keramika Jika, dřevěná Eurookna. Čtyři detaily po vteřině.</p><div class="say"><span class="who">Titulek</span>DUBOVÉ PODLAHY Z MASIVU</div><p class="nat"><b>Natočit:</b> <span class="ref" data-r="35">→ řádky 35</span></p></div></div>
+<div class="kap"><img src="img/deska.jpg" alt=""><div><h3><span class="kn">7</span>Dům a deska <span class="tc">1:02–1:08</span></h3><p>Uliční fasáda v poledním slunci, detail pamětní desky.</p><div class="say"><span class="who">Titulek</span>1907 · RODNÝ DŮM J. K. LOBKOWICZE</div><p class="nat"><b>Natočit:</b> <span class="ref" data-r="37">→ řádky 37, 38</span></p></div></div>
+<div class="kap"><img src="img/hero.jpg" alt=""><div><h3><span class="kn">8</span>Výhled a závěr <span class="tc">1:08–1:15</span></h3><p>Z okna bytu 9 na řeku a most, kamera vyletí oknem ven a dron se vzdálí nad Jizerou (vychytávka 3).</p><div class="say"><span class="who">Titulek</span>PALACKÉHO 440 · TURNOV + kontakt</div><p class="nat"><b>Natočit:</b> <span class="ref" data-r="9">→ řádky 9, 21, 39</span></p></div></div>
+<h4>Titulky bytů (kapitola 4, po 4 s)</h4><div class="meta"><span>BYT 01 · 3+KK · 89 M²</span><span>BYT 04 · 3+KK · 85 M² · VIZ 4</span><span>BYT 05 · 4+1 · 135 M² · VIZ 1</span><span>BYT 08 · 3+KK · 87,6 M² · VIZ 2</span><span>BYT 09 · 3+KK MEZONET · 76,8 M² · VIZ 3</span><span>BYT 10 · 4+KK MEZONET · 120,8 M²</span><span>BYT 11 · 3+KK · 88,2 M²</span><span>BYT 12 · 4+KK · 132,7 M² · VIZ 5, 6</span></div>
+</section>
+<section class="pnl" data-tab="SL"><div class="eyebrow">Turnov · Palackého 440 · varianta A</div><h2>Harmonogram a shotlist <span id="prog" class="prog noprint"></span></h2><p class="rules"><b>9:00–12:00, ne déle.</b> Ráno řeka (slunce na fasádě k řece do 13:00), uliční fasáda až v poledne. <b>Mlha nad Jizerou: bloky prohodit, nejdřív byty, dron po 10:30.</b> Před záběrem nahlas číslo řádku. Vizualizace VIZ 1–6: stativ 15 s bez pohybu, prázdný pokoj, žádní lidé v záběru. <b>Byty nebudou uklizené (dobíhají dokončovací práce, prodávající spěchá):</b> nepořádek z místnosti ven, komponovat bez něj; ke každé jízdě ještě 5 s ze stativu ze stejného místa a foto čistého rámu pro digitální úklid. Klient ladí až v záběrech: do FD Studia nahrát ke schválení po pasážích = kapitolách 1–8.</p><h4>Harmonogram</h4><table class="harm"><thead><tr><th>Čas</th><th>Kde</th><th>Řádky</th></tr></thead><tbody><tr><td class="t">9:00</td><td>Příjezd a obchůzka</td><td class="rr">1–3</td></tr><tr><td class="t">9:10</td><td>Dron u řeky <span class="tag d">SLUNCE NA FASÁDĚ K ŘECE</span></td><td class="rr">4–10</td></tr><tr><td class="t">9:50</td><td>Byty 11 a 12 · podkroví <span class="tag ">INTERIÉR</span></td><td class="rr">11–16</td></tr><tr><td class="t">10:15</td><td>Byty 10 a 9 · mezonety <span class="tag ">INTERIÉR</span></td><td class="rr">17–22</td></tr><tr><td class="t">10:45</td><td>Byty 8, 5 a 4 · 3. a 2. NP <span class="tag ">INTERIÉR</span></td><td class="rr">23–28</td></tr><tr><td class="t">11:10</td><td>Byt 1 · přízemí <span class="tag ">INTERIÉR</span></td><td class="rr">29–31</td></tr><tr><td class="t">11:25</td><td>Společné prostory a detaily <span class="tag n">STÍN</span></td><td class="rr">32–36</td></tr><tr><td class="t">11:40</td><td>Uliční fasáda a závěr dronem <span class="tag d">SLUNCE NA ULIČNÍ FASÁDĚ</span></td><td class="rr">37–41</td></tr><tr><td class="t">12:00</td><td>Konec · 3 hodiny na místě</td><td class="rr"></td></tr></tbody></table><h4>Shotlist · K = kapitola filmu</h4><div class="slw"><div class="blk"><span class="bt">9:00</span><span class="bk">Příjezd a obchůzka</span></div>
+<div class="sl" data-id="r1"><label><input type="checkbox" data-id="r1"><span class="n">1</span><span class="tx">Obchůzka s klíči: odemknout všechny byty a terasy, rozsvítit, žaluzie nahoru, okna čistá</span></label><span class="rf"><span class="p x">PŘÍPRAVA</span></span></div>
+<div class="sl" data-id="r2"><label><input type="checkbox" data-id="r2"><span class="n">2</span><span class="tx">Dvůr: parkovací stání volná, brána otevřená; zjistit, která stání patří bytům</span></label><span class="rf"><span class="p x">PŘÍPRAVA</span><i>K5</i></span></div>
+<div class="sl" data-id="r3"><label><input type="checkbox" data-id="r3"><span class="n">3</span><span class="tx">Kamera i dron 4K, 25 fps. Před každým záběrem nahlas číslo řádku</span></label><span class="rf"><span class="p x">PŘÍPRAVA</span></span></div>
+<div class="blk"><span class="bt">9:10</span><span class="bk">Dron u řeky</span><span class="tag d">SLUNCE NA FASÁDĚ K ŘECE</span></div>
+<div class="sl" data-id="r4"><label><input type="checkbox" data-id="r4"><span class="n">4</span><span class="tx">Nízko nad Jizerou k mostu, dům vyroste za mostem. 15 s, 3 pokusy</span></label><span class="rf"><span class="p h">DRON</span><i>K1</i></span></div>
+<div class="sl" data-id="r5"><label><input type="checkbox" data-id="r5"><span class="n">5</span><span class="tx">Boční jízda podél fasády k řece ve výšce 3. NP, most v popředí. 10 s</span></label><span class="rf"><span class="p h">DRON</span><i>K1</i></span></div>
+<div class="sl" data-id="r6"><label><input type="checkbox" data-id="r6"><span class="n">6</span><span class="tx">Stoupání od mostu nad město, náměstí za mostem. 12 s</span></label><span class="rf"><span class="p h">DRON</span><i>K2</i></span></div>
+<div class="sl" data-id="r7"><label><input type="checkbox" data-id="r7"><span class="n">7</span><span class="tx">Zámek Hrubý Rohozec nad městem, pomalý pan zpět k domu. 10 s</span></label><span class="rf"><span class="p h">DRON</span><i>K2</i></span></div>
+<div class="sl" data-id="r8"><label><input type="checkbox" data-id="r8"><span class="n">8</span><span class="tx">Kolmo shora nad dvorem a parkovacími stáními, pomalá rotace. 10 s</span></label><span class="rf"><span class="p h">DRON</span><i>K5</i></span></div>
+<div class="sl" data-id="r9"><label><input type="checkbox" data-id="r9"><span class="n">9</span><span class="tx">Dům shora, pomalý nájezd na střechu a terasy mezonetů. 8 s</span></label><span class="rf"><span class="p h">DRON</span><i>K1</i><i>K8</i></span></div>
+<div class="sl" data-id="r10"><label><input type="checkbox" data-id="r10"><span class="n">10</span><span class="tx">Foto z dronu: dům u řeky ze 3 úhlů, dvůr se stáními shora, panorama Turnova</span></label><span class="rf"><span class="p f">FOTO</span></span></div>
+<div class="blk"><span class="bt">9:50</span><span class="bk">Byty 11 a 12 · podkroví</span><span class="tag ">INTERIÉR</span></div>
+<div class="sl" data-id="r11"><label><input type="checkbox" data-id="r11"><span class="n">11</span><span class="tx">Úklid záběru: nářadí, obaly, kbelíky a žebříky z místnosti do koupelny nebo na chodbu, po záběru vrátit</span></label><span class="rf"><span class="p x">PŘÍPRAVA</span></span></div>
+<div class="sl" data-id="r12"><label><input type="checkbox" data-id="r12"><span class="n">12</span><span class="tx">Byt 11: obytná místnost s kuchyní, ložnice, obloukové okno s trámem. Gimbal průchod 10 s</span></label><span class="rf"><span class="p k">GIMBAL</span><i>K4</i></span></div>
+<div class="sl" data-id="r13"><label><input type="checkbox" data-id="r13"><span class="n">13</span><span class="tx">Byt 12: obytná místnost, stativ 15 s bez pohybu (VIZ 5), pak stejný úhel s pomalou jízdou 10 s</span></label><span class="rf"><span class="p s">STATIV</span><i>K4</i></span></div>
+<div class="sl" data-id="r14"><label><input type="checkbox" data-id="r14"><span class="n">14</span><span class="tx">Byt 12: ložnice 20,8 m², stativ 15 s (VIZ 6)</span></label><span class="rf"><span class="p s">STATIV</span><i>K4</i></span></div>
+<div class="sl" data-id="r15"><label><input type="checkbox" data-id="r15"><span class="n">15</span><span class="tx">Na konci každého bytu švih kamerou doprava 1 s (přechod do dalšího bytu)</span></label><span class="rf"><span class="p k">GIMBAL</span><i>K4</i></span></div>
+<div class="sl" data-id="r16"><label><input type="checkbox" data-id="r16"><span class="n">16</span><span class="tx">Foto: obytná místnost, ložnice, koupelna, výhled z oken. Každý rám i bez lidí (digitální úklid)</span></label><span class="rf"><span class="p f">FOTO</span></span></div>
+<div class="blk"><span class="bt">10:15</span><span class="bk">Byty 10 a 9 · mezonety</span><span class="tag ">INTERIÉR</span></div>
+<div class="sl" data-id="r17"><label><input type="checkbox" data-id="r17"><span class="n">17</span><span class="tx">Úklid záběru: nářadí, obaly, kbelíky a žebříky z místnosti do koupelny nebo na chodbu, po záběru vrátit</span></label><span class="rf"><span class="p x">PŘÍPRAVA</span></span></div>
+<div class="sl" data-id="r18"><label><input type="checkbox" data-id="r18"><span class="n">18</span><span class="tx">Byt 10: chodba → dubové schodiště → galerie → terasa 23 m², gimbal v jednom záběru</span></label><span class="rf"><span class="p k">GIMBAL</span><i>K4</i></span></div>
+<div class="sl" data-id="r19"><label><input type="checkbox" data-id="r19"><span class="n">19</span><span class="tx">Byt 9: obytná místnost s kuchyní a galerie, stativ 15 s (VIZ 3)</span></label><span class="rf"><span class="p s">STATIV</span><i>K4</i></span></div>
+<div class="sl" data-id="r20"><label><input type="checkbox" data-id="r20"><span class="n">20</span><span class="tx">Byt 9: po schodišti nahoru na terasu 26 m², gimbal</span></label><span class="rf"><span class="p k">GIMBAL</span><i>K4</i></span></div>
+<div class="sl" data-id="r21"><label><input type="checkbox" data-id="r21"><span class="n">21</span><span class="tx">Byt 9: výhled z okna na most a řeku, stativ 10 s, pak pomalý nájezd k oknu (navazuje řádek 39)</span></label><span class="rf"><span class="p s">STATIV</span><i>K8</i></span></div>
+<div class="sl" data-id="r22"><label><input type="checkbox" data-id="r22"><span class="n">22</span><span class="tx">Foto: obytná místnost, galerie, ložnice, koupelna, terasy, výhled na most</span></label><span class="rf"><span class="p f">FOTO</span></span></div>
+<div class="blk"><span class="bt">10:45</span><span class="bk">Byty 8, 5 a 4 · 3. a 2. NP</span><span class="tag ">INTERIÉR</span></div>
+<div class="sl" data-id="r23"><label><input type="checkbox" data-id="r23"><span class="n">23</span><span class="tx">Úklid záběru: nářadí, obaly, kbelíky a žebříky z místnosti do koupelny nebo na chodbu, po záběru vrátit</span></label><span class="rf"><span class="p x">PŘÍPRAVA</span></span></div>
+<div class="sl" data-id="r24"><label><input type="checkbox" data-id="r24"><span class="n">24</span><span class="tx">Byt 8: obytná místnost s kuchyní, stativ 15 s (VIZ 2); okno s obloukem mostu</span></label><span class="rf"><span class="p s">STATIV</span><i>K4</i></span></div>
+<div class="sl" data-id="r25"><label><input type="checkbox" data-id="r25"><span class="n">25</span><span class="tx">Byt 5: obytná místnost s jídelnou 35,1 m², stativ 15 s (VIZ 1); kuchyně a ložnice gimbalem</span></label><span class="rf"><span class="p s">STATIV</span><i>K4</i></span></div>
+<div class="sl" data-id="r26"><label><input type="checkbox" data-id="r26"><span class="n">26</span><span class="tx">Byt 4: obytná místnost, stativ 15 s (VIZ 4)</span></label><span class="rf"><span class="p s">STATIV</span><i>K4</i></span></div>
+<div class="sl" data-id="r27"><label><input type="checkbox" data-id="r27"><span class="n">27</span><span class="tx">Švih kamerou na konci každého bytu</span></label><span class="rf"><span class="p k">GIMBAL</span><i>K4</i></span></div>
+<div class="sl" data-id="r28"><label><input type="checkbox" data-id="r28"><span class="n">28</span><span class="tx">Foto: obytná místnost, ložnice, koupelna, výhled</span></label><span class="rf"><span class="p f">FOTO</span></span></div>
+<div class="blk"><span class="bt">11:10</span><span class="bk">Byt 1 · přízemí</span><span class="tag ">INTERIÉR</span></div>
+<div class="sl" data-id="r29"><label><input type="checkbox" data-id="r29"><span class="n">29</span><span class="tx">Úklid záběru: nářadí, obaly, kbelíky a žebříky z místnosti do koupelny nebo na chodbu, po záběru vrátit</span></label><span class="rf"><span class="p x">PŘÍPRAVA</span></span></div>
+<div class="sl" data-id="r30"><label><input type="checkbox" data-id="r30"><span class="n">30</span><span class="tx">Byt 1: obytná místnost s kuchyní 33,4 m², ložnice. Gimbal průchod 10 s</span></label><span class="rf"><span class="p k">GIMBAL</span><i>K4</i></span></div>
+<div class="sl" data-id="r31"><label><input type="checkbox" data-id="r31"><span class="n">31</span><span class="tx">Foto: obytná místnost, ložnice, šatna, koupelna</span></label><span class="rf"><span class="p f">FOTO</span></span></div>
+<div class="blk"><span class="bt">11:25</span><span class="bk">Společné prostory a detaily</span><span class="tag n">STÍN</span></div>
+<div class="sl" data-id="r32"><label><input type="checkbox" data-id="r32"><span class="n">32</span><span class="tx">Vstupní dveře zvenku → dovnitř → schodiště nahoru. Gimbal 10 s</span></label><span class="rf"><span class="p k">GIMBAL</span><i>K3</i></span></div>
+<div class="sl" data-id="r33"><label><input type="checkbox" data-id="r33"><span class="n">33</span><span class="tx">Poštovní schránky, zábradlí, štuky ve společných prostorách. 3 krátké detaily</span></label><span class="rf"><span class="p k">GIMBAL</span><i>K3</i></span></div>
+<div class="sl" data-id="r34"><label><input type="checkbox" data-id="r34"><span class="n">34</span><span class="tx">Dvůr ze země: brána na dálkové ovládání se otevírá, stání. 8 s</span></label><span class="rf"><span class="p k">GIMBAL</span><i>K5</i></span></div>
+<div class="sl" data-id="r35"><label><input type="checkbox" data-id="r35"><span class="n">35</span><span class="tx">Detaily po 5 s: dubová podlaha plazivým nájezdem, kování dveří Sapeli, baterie Jika, rám Eurookna</span></label><span class="rf"><span class="p s">STATIV</span><i>K6</i></span></div>
+<div class="sl" data-id="r36"><label><input type="checkbox" data-id="r36"><span class="n">36</span><span class="tx">Foto: vstup, schodiště, dvůr, detaily</span></label><span class="rf"><span class="p f">FOTO</span></span></div>
+<div class="blk"><span class="bt">11:40</span><span class="bk">Uliční fasáda a závěr dronem</span><span class="tag d">SLUNCE NA ULIČNÍ FASÁDĚ</span></div>
+<div class="sl" data-id="r37"><label><input type="checkbox" data-id="r37"><span class="n">37</span><span class="tx">Uliční fasáda zespodu, pak detail pamětní desky. Gimbal 10 s</span></label><span class="rf"><span class="p k">GIMBAL</span><i>K7</i></span></div>
+<div class="sl" data-id="r38"><label><input type="checkbox" data-id="r38"><span class="n">38</span><span class="tx">Dron: nájezd na fasádu do Palackého v poledním slunci. 10 s</span></label><span class="rf"><span class="p h">DRON</span><i>K7</i></span></div>
+<div class="sl" data-id="r39"><label><input type="checkbox" data-id="r39"><span class="n">39</span><span class="tx">Dron: od okna bytu 9 ven a odlet nad Jizerou se stoupáním. 15 s, 2 pokusy (navazuje na řádek 21)</span></label><span class="rf"><span class="p h">DRON</span><i>K8</i></span></div>
+<div class="sl" data-id="r40"><label><input type="checkbox" data-id="r40"><span class="n">40</span><span class="tx">Dron: most a náměstí s bočním světlem. 10 s (záloha ke kapitole 2)</span></label><span class="rf"><span class="p h">DRON</span><i>K2</i></span></div>
+<div class="sl" data-id="r41"><label><input type="checkbox" data-id="r41"><span class="n">41</span><span class="tx">Foto: uliční fasáda, deska</span></label><span class="rf"><span class="p f">FOTO</span></span></div>
+<div class="blk"><span class="bt">12:00</span><span class="bk">Konec · 3 hodiny na místě</span></div></div></section>
+<p class="foot noprint">Interní podklad FrantišekDron · Palackého 440, Turnov · varianta A · 28. 10. 2026</p>
+</div>
+<script>
+(function(){
+  var K='fd_turnov_A_natoceni', st={};
+  try{st=JSON.parse(localStorage.getItem(K)||'{}')}catch(e){}
+  var tabs=[].slice.call(document.querySelectorAll('.tabs button')), pn=[].slice.call(document.querySelectorAll('.pnl'));
+  function show(id){tabs.forEach(function(b){b.classList.toggle('on',b.dataset.t===id)});pn.forEach(function(p){p.classList.toggle('on',p.dataset.tab===id)});try{localStorage.setItem(K+'_tab',id)}catch(e){};window.scrollTo(0,0)}
+  tabs.forEach(function(b){b.addEventListener('click',function(){show(b.dataset.t)})});
+  var t0='F'; try{t0=localStorage.getItem(K+'_tab')||'F'}catch(e){}
+  if(!document.querySelector('[data-tab="'+t0+'"]'))t0='F';
+  show(t0);
+  document.querySelectorAll('.ref').forEach(function(r){r.style.cursor='pointer';r.addEventListener('click',function(){show('SL');var row=document.querySelector('.sl[data-id="r'+r.dataset.r+'"]');if(row)window.scrollTo(0,row.getBoundingClientRect().top+window.scrollY-70)})});
+  var bx=[].slice.call(document.querySelectorAll('.sl input'));
+  function prog(){var d=bx.filter(function(x){return x.checked}).length;document.getElementById('prog').textContent=d+' / '+bx.length+' hotovo'}
+  bx.forEach(function(x){
+    x.checked=!!st[x.dataset.id]; x.closest('.sl').classList.toggle('done',x.checked);
+    x.addEventListener('change',function(){if(x.checked)st[x.dataset.id]=1;else delete st[x.dataset.id];x.closest('.sl').classList.toggle('done',x.checked);try{localStorage.setItem(K,JSON.stringify(st))}catch(e){};prog()});
+  });
+  prog();
+})();
+</script>
+</body>
+</html>
